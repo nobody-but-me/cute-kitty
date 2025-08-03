@@ -98,7 +98,7 @@ shape = SubResource("RectangleShape2D_tqbcw")
 
 [node name="jump_buffer" type="RayCast2D" parent="."]
 enabled = false
-target_position = Vector2(0, 10)
+target_position = Vector2(0, 15)
 
 [node name="animation_player" type="AnimationPlayer" parent="."]
 libraries = {

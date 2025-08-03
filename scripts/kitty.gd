@@ -30,6 +30,8 @@ func _process(_delta: float) -> void:
 	self.velocity.y += GRAVITY * _delta
 	if (self.is_on_floor() || $jump_buffer.is_colliding()):
 		if (Input.is_action_pressed("jump")): self.velocity.y = -JUMP_FORCE; 
+	else:
+		if (Input.is_action_just_released("jump") || self.is_on_ceiling()): velocity.y *= 0.5
 		
 	if (!self.is_on_floor()): $animation_player.play("jump")
 	return
