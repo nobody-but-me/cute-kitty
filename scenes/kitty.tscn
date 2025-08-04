@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d351yoctwxu5c" path="res://sprites/kitty/bigodin/bigodin-jump.png" id="4_q6pbq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tqbcw"]
-size = Vector2(10, 9)
+size = Vector2(12, 9)
 
 [sub_resource type="Animation" id="Animation_010mf"]
 length = 0.001
@@ -89,18 +89,23 @@ collision_mask = 13
 script = ExtResource("1_tqbcw")
 
 [node name="sprite" type="Sprite2D" parent="."]
-position = Vector2(0, -12)
+position = Vector2(1, -12)
 texture = ExtResource("2_26jn4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4.5)
+position = Vector2(1, -4.5)
 shape = SubResource("RectangleShape2D_tqbcw")
 
 [node name="jump_buffer" type="RayCast2D" parent="."]
-enabled = false
 target_position = Vector2(0, 15)
 
 [node name="animation_player" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_vuvx8")
 }
+
+[node name="coyote_timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="coyote_timer" to="." method="_on_timer_timeout"]
