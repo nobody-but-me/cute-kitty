@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdor3rjasyl1f"]
+
+[ext_resource type="Script" uid="uid://cofxlqqtn4phy" path="res://scripts/tile_blood.gd" id="1_3oaon"]
+[ext_resource type="Texture2D" uid="uid://ds2k7rlos72hy" path="res://sprites/blood.png" id="2_ysj1o"]
+
+[node name="tile_blood" type="Area2D"]
+script = ExtResource("1_3oaon")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 1)
+scale = Vector2(2, 2)
+texture = ExtResource("2_ysj1o")
+
+[node name="death_timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="death_timer" to="." method="_on_death_timer_timeout"]
