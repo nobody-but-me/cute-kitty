@@ -10,8 +10,19 @@ var jumping: bool = false
 
 var jump_force: float = 250.
 var speed: float = 100.
+var state: String = 'idle'
 
 func ready() -> void:
+	return
+
+func update_animation() -> void:
+	match state:
+		'idle':    $animation_player.play('idle');
+		'walking': $animation_player.play('walk');
+		'jumping': $animation_player.play('jump');
+		'resting': $animation_player.play('rest');
+		_:
+			return
 	return
 
 func move() -> void:
@@ -22,10 +33,10 @@ func move() -> void:
 	
 	if (direction != 0): 
 		self.velocity.x = lerp(self.velocity.x, direction * speed, ACCELERATION); 
-		if (self.is_on_floor()): $animation_player.play("walk")
+		if (self.is_on_floor() && state != 'resting'): state = 'walking'
 	else: 
 		self.velocity.x = lerp(self.velocity.x, .0, FRICTION); 
-		if (self.is_on_floor()): $animation_player.play("idle")
+		if (self.is_on_floor() && state != 'resting'): state = 'idle'
 	return
 
 func _physics_process(_delta: float) -> void:
@@ -35,16 +46,31 @@ func _physics_process(_delta: float) -> void:
 	self.move_and_slide()
 	self.velocity.y += GRAVITY * _delta
 	if (self.is_on_floor() || $jump_buffer.is_colliding() || coyote):
-		if (Input.is_action_just_pressed("jump")): self.velocity.y = -jump_force; jumping = true
-	else:
-		if (Input.is_action_just_released("jump") || self.is_on_ceiling()): velocity.y *= 0.5
+		if (Input.is_action_pressed("jump")): self.velocity.y = -jump_force; jumping = true
+	
+	if (!self.is_on_floor()): 
+		if (Input.is_action_just_released("jump") || self.is_on_ceiling()): velocity.y *= 0.5; state = 'jumping'
 	
 	if (!self.is_on_floor() && last_floor && !jumping):
-		$animation_player.play("jump");
 		coyote = true
 		$coyote_timer.start()
+	update_animation();
+	return
+
+func _input(_event: InputEvent) -> void:
+	if (_event is InputEventKey):
+		# TODO: worst logicd I have ever seen.
+		if (_event.pressed): 
+			$resting_timer.stop()
+			state = 'idle'
+		else: 
+			$resting_timer.start()
 	return
 
 func _on_timer_timeout() -> void:
 	coyote = false
+	return
+
+func _on_resting_timer_timeout() -> void:
+	if (state == 'idle'): state = 'resting'
 	return

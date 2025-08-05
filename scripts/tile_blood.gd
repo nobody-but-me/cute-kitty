@@ -17,7 +17,7 @@ func _physics_process(_delta: float) -> void:
 		if (blood.get_overlapping_bodies().is_empty()): self.visible = false;
 		else: self.visible = true;
 		self.global_position = blood.global_position
-	
+	self.rotation_degrees += 1
 	return
 
 func _on_death_timer_timeout() -> void:

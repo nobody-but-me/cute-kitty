@@ -8,9 +8,13 @@ var blood_path: String = '/root/main/'
 
 var random = RandomNumberGenerator.new()
 var count: int = 0;
+var colour: Color;
 
 func _ready() -> void:
 	random.randomize()
+	
+	randomize()
+	colour = Color(randf_range(0.0, 150.0), 0.0, 0.0, randf_range(50.0, 255.0))
 	return
 
 func _process(_delta: float) -> void:
@@ -18,6 +22,9 @@ func _process(_delta: float) -> void:
 		for i in range(0, 125, 1):
 			var tb = tile_blood.instantiate()
 			var b = blood.instantiate()
+			
+			tb.get_node("Sprite2D").modulate = colour
+			b.get_node("Sprite2D").modulate = colour
 			
 			tb.blood = b;
 			
