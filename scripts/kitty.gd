@@ -59,7 +59,7 @@ func _physics_process(_delta: float) -> void:
 
 func _input(_event: InputEvent) -> void:
 	if (_event is InputEventKey):
-		# TODO: worst logicd I have ever seen.
+		# TODO: the worst logic I have ever seen.
 		if (_event.pressed): 
 			$resting_timer.stop()
 			state = 'idle'
