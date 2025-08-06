@@ -14,8 +14,9 @@ func _ready() -> void:
 	return
 
 func update_camera() -> void:
-	var current_cell = ((player.global_position - start_offset) / screen_size).floor()
-	self.global_position = lerp(self.global_position, start_offset + (current_cell * screen_size), acceleration)
+	if (player):
+		var current_cell = ((player.global_position - start_offset) / screen_size).floor()
+		self.global_position = lerp(self.global_position, start_offset + (current_cell * screen_size), acceleration)
 	return
 
 func _physics_process(_delta: float) -> void:

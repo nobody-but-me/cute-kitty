@@ -15,6 +15,13 @@ var state: String = 'idle'
 func ready() -> void:
 	return
 
+func kill() -> void:
+	var blood_component = preload("res://scenes/blood_component.tscn").instantiate()
+	blood_component.global_position = self.global_position
+	get_tree().current_scene.add_child(blood_component)
+	self.queue_free()
+	return
+
 func update_animation() -> void:
 	match state:
 		'idle':    $animation_player.play('idle');
@@ -74,4 +81,8 @@ func _on_timer_timeout() -> void:
 func _on_resting_timer_timeout() -> void:
 	if (self.is_on_floor()):
 		if (state == 'idle'): state = 'resting'
+	return
+
+func _on_danger_area_body_entered(_body: Node2D) -> void:
+	if (_body.is_in_group("dangerous")): kill()
 	return
