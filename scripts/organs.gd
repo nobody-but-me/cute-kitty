@@ -3,9 +3,9 @@ extends CharacterBody2D
 @export var tex: Texture2D
 
 var gravity: float = 150.0
-var energy: float = 10.0
 
 func _ready() -> void:
+	$start_die_timer.start()
 	randomize()
 	velocity = Vector2(randf_range(-50.0, 50.0), randf_range(-50.0, 50.0))
 	self.rotation_degrees = randf_range(0.0, 360.0)
@@ -20,6 +20,13 @@ func _physics_process(_delta: float) -> void:
 		velocity = velocity.bounce(collision_info.get_normal())
 		velocity.x *= 0.5
 		velocity.y *= 0.5
-	#if (self.is_on_floor() || self.is_on_ceiling()):
-		#gravity *= 0.5
+	return
+
+func _on_start_die_timer_timeout() -> void:
+	$animation_player.play("modulate")
+	$queue_free_timer.start()
+	return
+
+func _on_queue_free_timer_timeout() -> void:
+	self.queue_free()
 	return

@@ -26,9 +26,9 @@ func _process(_delta: float) -> void:
 	if (Input.is_action_just_pressed("mb_left")):
 		randomize()
 		random.randomize()
-		colour = Color(randf_range(0.0, 150.0), 0.0, 0.0, randf_range(50.0, 255.0))
+		colour = Color(randf_range(0.0, 150.0), 0.0, 0.0, randf_range(10.0, 255.0))
 		
-		for i in range(0, 125, 1):
+		for i in range(0, 250, 1):
 			var tb = tile_blood.instantiate()
 			var b = blood.instantiate()
 			
