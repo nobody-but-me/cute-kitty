@@ -18,6 +18,9 @@ func ready() -> void:
 func kill() -> void:
 	var blood_component = preload("res://scenes/blood_component.tscn").instantiate()
 	blood_component.global_position = self.global_position
+	blood_component.max_blood_amount = 150
+	blood_component.organs = true
+	
 	get_tree().current_scene.add_child(blood_component)
 	self.queue_free()
 	return

@@ -1,10 +1,37 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhpe4t0wvsfxj"]
+[gd_scene load_steps=10 format=3 uid="uid://dhpe4t0wvsfxj"]
 
 [ext_resource type="Script" uid="uid://dcal470p1ftxf" path="res://scripts/organs.gd" id="1_df3lu"]
 [ext_resource type="Texture2D" uid="uid://dvx6hxw4fijc4" path="res://sprites/organs/bone.png" id="2_y3n33"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y3klu"]
 radius = 3.0
+
+[sub_resource type="Animation" id="Animation_y3n33"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_df3lu"]
 resource_name = "squish"
@@ -23,29 +50,76 @@ tracks/0/keys = {
 "values": [Vector2(1, 1), Vector2(1.8125, 0.5), Vector2(0.53125, 1.1875), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_y3n33"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_y3klu"]
+resource_name = "modulate"
+length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:scale")
+tracks/0/path = NodePath("sprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y3klu"]
 _data = {
 &"RESET": SubResource("Animation_y3n33"),
+&"modulate": SubResource("Animation_y3klu"),
 &"squish": SubResource("Animation_df3lu")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_df3lu"]
 radius = 4.0
+
+[sub_resource type="GDScript" id="GDScript_df3lu"]
+script/source = "extends Node2D
+
+@export var max_blood_amount: int = 150
+
+const tile_blood := preload(\"res://scenes/tile_blood.tscn\");
+const blood := preload(\"res://scenes/blood.tscn\");
+
+var tile_blood_path: String = '/root/main/blood_viewport/viewport'
+var blood_path: String = '/root/main/'
+
+var random = RandomNumberGenerator.new()
+var count: int = 0;
+var colour: Color;
+
+func explode() -> void:
+	randomize()
+	random.randomize()
+	colour = Color(randf_range(0.0, 150.0), 0.0, 0.0, randf_range(10.0, 255.0))
+	
+	for i in range(0, max_blood_amount, 1):
+		var tb = tile_blood.instantiate()
+		var b = blood.instantiate()
+		
+		tb.get_node(\"Sprite2D\").modulate = colour
+		b.get_node(\"Sprite2D\").modulate = colour
+		
+		tb.blood = b;
+		
+		get_node(tile_blood_path).call_deferred(\"add_child\", tb)
+		get_tree().current_scene.call_deferred(\"add_child\", b)
+		tb.name = \"blood_particle\" + str(count)
+		b.name  = \"blood_particle\" + str(count)
+		
+		b.horizontal_speed = random.randf_range(-1, 1)
+		b.vertical_speed = random.randf_range(-1, 0.5)
+		
+		var init_position: Vector2 = get_parent().get_global_position()
+		 
+		tb.global_position = init_position
+		b.global_position = init_position
+		count += 1;
+	return
+"
 
 [node name="organs" type="CharacterBody2D"]
 collision_layer = 0
@@ -81,6 +155,10 @@ one_shot = true
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_df3lu")
 debug_color = Color(0.988409, 0, 0.302308, 0.42)
+
+[node name="blood_component" type="Node2D" parent="."]
+script = SubResource("GDScript_df3lu")
+max_blood_amount = 5
 
 [connection signal="timeout" from="queue_free_timer" to="." method="_on_queue_free_timer_timeout"]
 [connection signal="timeout" from="start_die_timer" to="." method="_on_start_die_timer_timeout"]

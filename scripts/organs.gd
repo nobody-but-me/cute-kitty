@@ -16,6 +16,10 @@ func _ready() -> void:
 		bone = true
 	return
 
+func add_blood() -> void:
+	$blood_component.explode()
+	return
+
 func _physics_process(_delta: float) -> void:
 	var collision_info = move_and_collide(velocity * _delta)
 	if (!self.is_on_floor()): self.velocity.y += gravity * _delta
@@ -38,5 +42,5 @@ func _on_queue_free_timer_timeout() -> void:
 	return
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
-	if (bone == false): $squish.play("squish")
+	if (bone == false): $squish.play("squish"); add_blood()
 	return

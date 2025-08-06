@@ -1,5 +1,8 @@
 extends Node2D
 
+@export var max_blood_amount: int = 150
+@export var organs: bool = true
+
 const tile_blood := preload("res://scenes/tile_blood.tscn");
 const blood := preload("res://scenes/blood.tscn");
 
@@ -24,7 +27,7 @@ func explode() -> void:
 	random.randomize()
 	colour = Color(randf_range(0.0, 150.0), 0.0, 0.0, randf_range(10.0, 255.0))
 	
-	for i in range(0, 250, 1):
+	for i in range(0, max_blood_amount, 1):
 		var tb = tile_blood.instantiate()
 		var b = blood.instantiate()
 		
@@ -48,17 +51,18 @@ func explode() -> void:
 		b.global_position = init_position
 		count += 1;
 	# TODO: oh my fucking god
-	for i in range(0, 8, 1):
-		add_organ(preload("res://sprites/organs/bone.png"))
-	add_organ(preload("res://sprites/organs/stomach.png"))
-	add_organ(preload("res://sprites/organs/trachea.png"))
-	add_organ(preload("res://sprites/organs/spleen.png"))
-	add_organ(preload("res://sprites/organs/brain.png"))
-	add_organ(preload("res://sprites/organs/skull.png"))
-	add_organ(preload("res://sprites/organs/lungs.png"))
-	add_organ(preload("res://sprites/organs/liver.png"))
-	add_organ(preload("res://sprites/organs/heart.png"))
-	add_organ(preload("res://sprites/organs/ribs.png"))
+	if (organs):
+		for i in range(0, 8, 1):
+			add_organ(preload("res://sprites/organs/bone.png"))
+		add_organ(preload("res://sprites/organs/stomach.png"))
+		add_organ(preload("res://sprites/organs/trachea.png"))
+		add_organ(preload("res://sprites/organs/spleen.png"))
+		add_organ(preload("res://sprites/organs/brain.png"))
+		add_organ(preload("res://sprites/organs/skull.png"))
+		add_organ(preload("res://sprites/organs/lungs.png"))
+		add_organ(preload("res://sprites/organs/liver.png"))
+		add_organ(preload("res://sprites/organs/heart.png"))
+		add_organ(preload("res://sprites/organs/ribs.png"))
 	return
 
 func _ready() -> void:
