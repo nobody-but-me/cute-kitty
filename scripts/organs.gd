@@ -2,12 +2,12 @@ extends CharacterBody2D
 
 @export var tex: Texture2D
 
-var gravity: float = 150.0
+var gravity: float = 250.0
 
 func _ready() -> void:
 	$start_die_timer.start()
 	randomize()
-	velocity = Vector2(randf_range(-50.0, 50.0), randf_range(-50.0, 50.0))
+	velocity = Vector2(randf_range(-50.0, 50.0), randf_range(250.0, 550.0))
 	self.rotation_degrees = randf_range(0.0, 360.0)
 	$sprite.texture = tex;
 	return
