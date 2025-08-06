@@ -365,7 +365,7 @@ sources/0 = SubResource("TileSetAtlasSource_at5dv")
 [node name="main" type="Node2D"]
 
 [node name="kitty" parent="." instance=ExtResource("1_errlg")]
-position = Vector2(197, 170)
+position = Vector2(123, 37)
 
 [node name="dangerous_tiles" type="TileMapLayer" parent="." groups=["dangerous"]]
 position = Vector2(0, 3)
@@ -377,7 +377,7 @@ tile_map_data = PackedByteArray("AAAJAAQAAAACAAIAAAAIAAQAAAABAAIAAAAHAAQAAAAGAAM
 tile_set = ExtResource("2_74lek")
 
 [node name="main_camera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
-position = Vector2(9.18085e-27, 108)
+position = Vector2(9.18085e-27, 5.60519e-45)
 anchor_mode = 0
 script = ExtResource("3_iyx0m")
 screen_size = Vector2(198, 108)

@@ -1,6 +1,6 @@
 extends Area2D
 
-const VERTICAL_SPEED_INTENSITY: float = 0.04
+const VERTICAL_SPEED_INTENSITY: float = 0.03
 const MAX_VERTICAL_SPEED: float = 5.0
 
 const MIN_WEIGHT: float = 0.01

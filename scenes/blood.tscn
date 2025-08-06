@@ -4,16 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://ds2k7rlos72hy" path="res://sprites/blood.png" id="2_uli77"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iyx0m"]
-size = Vector2(1, 1)
+size = Vector2(2, 2)
 
 [node name="blood" type="Area2D"]
 collision_layer = 4
 script = ExtResource("1_kl077")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0.5, 0.5)
+position = Vector2(1, 1)
+scale = Vector2(2, 2)
 texture = ExtResource("2_uli77")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0.5)
+position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_iyx0m")
