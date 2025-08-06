@@ -49,7 +49,8 @@ func _physics_process(_delta: float) -> void:
 		if (Input.is_action_pressed("jump")): self.velocity.y = -jump_force; jumping = true
 	
 	if (!self.is_on_floor()): 
-		if (Input.is_action_just_released("jump") || self.is_on_ceiling()): velocity.y *= 0.5; state = 'jumping'
+		if (Input.is_action_just_released("jump") || self.is_on_ceiling()): velocity.y *= 0.5;
+		state = 'jumping'
 	
 	if (!self.is_on_floor() && last_floor && !jumping):
 		coyote = true
@@ -63,8 +64,7 @@ func _input(_event: InputEvent) -> void:
 		if (_event.pressed): 
 			$resting_timer.stop()
 			state = 'idle'
-		else: 
-			$resting_timer.start()
+		else: $resting_timer.start()
 	return
 
 func _on_timer_timeout() -> void:
@@ -72,5 +72,6 @@ func _on_timer_timeout() -> void:
 	return
 
 func _on_resting_timer_timeout() -> void:
-	if (state == 'idle'): state = 'resting'
+	if (self.is_on_floor()):
+		if (state == 'idle'): state = 'resting'
 	return

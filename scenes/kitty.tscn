@@ -60,6 +60,22 @@ tracks/0/keys = {
 "values": [ExtResource("4_q6pbq")]
 }
 
+[sub_resource type="Animation" id="Animation_vuvx8"]
+resource_name = "rest"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_kqa1l")]
+}
+
 [sub_resource type="Animation" id="Animation_lwgw5"]
 resource_name = "walk"
 length = 0.3
@@ -76,22 +92,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [ExtResource("5_lwgw5"), ExtResource("1_q4drk"), ExtResource("6_010mf")]
-}
-
-[sub_resource type="Animation" id="Animation_vuvx8"]
-resource_name = "rest"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("7_kqa1l")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vuvx8"]
@@ -117,7 +117,7 @@ position = Vector2(1, -4.5)
 shape = SubResource("RectangleShape2D_tqbcw")
 
 [node name="jump_buffer" type="RayCast2D" parent="."]
-target_position = Vector2(0, 15)
+target_position = Vector2(0, 10)
 
 [node name="animation_player" type="AnimationPlayer" parent="."]
 libraries = {
