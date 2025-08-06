@@ -30,3 +30,7 @@ func _on_start_die_timer_timeout() -> void:
 func _on_queue_free_timer_timeout() -> void:
 	self.queue_free()
 	return
+
+func _on_area_2d_body_entered(_body: Node2D) -> void:
+	$squish.play("squish")
+	return

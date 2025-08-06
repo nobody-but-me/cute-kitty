@@ -39,7 +39,7 @@ func explode() -> void:
 		b.name  = "blood_particle" + str(count)
 		
 		b.horizontal_speed = random.randf_range(-1, 1)
-		b.vertical_speed = random.randf_range(-1, 0.5)
+		b.vertical_speed = random.randf_range(-2, -0.5)
 		
 		var init_position: Vector2 = get_node("/root/main/kitty").get_global_position()
 		init_position.y -= 10
