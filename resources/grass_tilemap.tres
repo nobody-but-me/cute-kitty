@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bgsqfs2gbtfa1"]
 
-[ext_resource type="Texture2D" uid="uid://bih0vr0mymylu" path="res://sprites/grass_tilemap.png" id="1_uenq0"]
+[ext_resource type="Texture2D" uid="uid://bih0vr0mymylu" path="res://sprites/tilemaps/grass_tilemap.png" id="1_uenq0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iyx0m"]
 texture = ExtResource("1_uenq0")
@@ -349,6 +349,8 @@ texture_region_size = Vector2i(24, 24)
 8:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -10, -6, -3, -6, -6, -4, -2, -2, -8, 0, 2, 2, -8, 4, -2, 4, -10, 8, 2, 10, -4, 12, 12, -12, 12)
 8:4/0 = 0
 8:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 4, -2, -10, 4, 6, 8, -10, 8, 6, 10, 2, 12, 12, -12, 12, -10, -10)
+9:4/0 = 0
+9:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, 10, -10, 2, -2, -2, 2, -2, 10, 2, 10, 8, 6, 12, -6, 12)
 
 [resource]
 tile_size = Vector2i(24, 24)
