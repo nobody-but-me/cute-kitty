@@ -13,14 +13,14 @@ var random = RandomNumberGenerator.new()
 var count: int = 0;
 var colour: Color;
 
-func add_organ(texture) -> void:
+func add_organ(texture):
 	var organ = preload("res://scenes/organs.tscn").instantiate()
 	organ.global_position = get_node("/root/main/kitty").get_global_position()
 	organ.global_position.y -= 10
 	organ.tex = texture
 	
 	get_node("/root/main/").call_deferred("add_child", organ)
-	return
+	return organ
 
 func explode() -> void:
 	randomize()
@@ -57,12 +57,15 @@ func explode() -> void:
 		add_organ(preload("res://sprites/organs/stomach.png"))
 		add_organ(preload("res://sprites/organs/trachea.png"))
 		add_organ(preload("res://sprites/organs/spleen.png"))
-		add_organ(preload("res://sprites/organs/brain.png"))
 		add_organ(preload("res://sprites/organs/skull.png"))
 		add_organ(preload("res://sprites/organs/lungs.png"))
 		add_organ(preload("res://sprites/organs/liver.png"))
 		add_organ(preload("res://sprites/organs/heart.png"))
 		add_organ(preload("res://sprites/organs/ribs.png"))
+			
+		var brain = add_organ(preload("res://sprites/organs/brain.png"))
+		get_tree().current_scene.get_node("main_camera").free_mode = true
+		get_tree().current_scene.get_node("main_camera").player = brain
 	return
 
 func _ready() -> void:
