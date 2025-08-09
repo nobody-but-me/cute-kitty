@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=3 uid="uid://ww0iiaui2utx"]
+
+[ext_resource type="Shader" uid="uid://csup8negie28j" path="res://shaders/animated_pixel_art.gdshader" id="1_sxlna"]
+[ext_resource type="FontFile" uid="uid://bq5hkw2xbx7rs" path="res://resources/fonts/Comic Sans MS.ttf" id="1_vom31"]
+[ext_resource type="Script" uid="uid://cktc6lqnb3hbx" path="res://scripts/restart_text.gd" id="2_30uts"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wkmxi"]
+shader = ExtResource("1_sxlna")
+shader_parameter/jitter_strength = 2.0
+shader_parameter/jitter_speed = 0.1
+shader_parameter/jitter_frequency = 12.0
+shader_parameter/separate_xy = true
+shader_parameter/time_offset = 0.0
+shader_parameter/enable_rotation = true
+shader_parameter/rotation_strength = 0.179
+shader_parameter/rotation_speed = 0.218
+shader_parameter/rotation_frequency = 0.1
+shader_parameter/enable_scaling = true
+shader_parameter/scale_strength = 0.035
+shader_parameter/scale_speed = 2.5
+shader_parameter/scale_frequency = 6.0
+shader_parameter/base_scale = 1.0
+shader_parameter/text_color = Color(0, 0, 0, 1)
+shader_parameter/use_custom_color = true
+shader_parameter/shake_intensity = 1.0
+shader_parameter/enable_pixelation = true
+shader_parameter/pixel_size = 1.0
+shader_parameter/adaptive_pixels = true
+shader_parameter/enable_outline = true
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_thickness = 1.0
+shader_parameter/chromatic_aberration = false
+shader_parameter/aberration_strength = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sxlna"]
+shader = ExtResource("1_sxlna")
+shader_parameter/jitter_strength = 2.0
+shader_parameter/jitter_speed = 0.1
+shader_parameter/jitter_frequency = 12.0
+shader_parameter/separate_xy = true
+shader_parameter/time_offset = 0.0
+shader_parameter/enable_rotation = true
+shader_parameter/rotation_strength = 0.179
+shader_parameter/rotation_speed = 0.218
+shader_parameter/rotation_frequency = 0.1
+shader_parameter/enable_scaling = true
+shader_parameter/scale_strength = 0.035
+shader_parameter/scale_speed = 2.5
+shader_parameter/scale_frequency = 6.0
+shader_parameter/base_scale = 1.0
+shader_parameter/text_color = Color(1, 1, 1, 1)
+shader_parameter/use_custom_color = true
+shader_parameter/shake_intensity = 1.0
+shader_parameter/enable_pixelation = true
+shader_parameter/pixel_size = 1.0
+shader_parameter/adaptive_pixels = true
+shader_parameter/enable_outline = true
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_thickness = 1.0
+shader_parameter/chromatic_aberration = false
+shader_parameter/aberration_strength = 1.0
+
+[node name="restart_text" type="RichTextLabel"]
+z_index = 5
+material = SubResource("ShaderMaterial_wkmxi")
+clip_contents = false
+offset_right = 174.0
+offset_bottom = 25.0
+pivot_offset = Vector2(73, 12)
+theme_override_constants/outline_size = 3
+theme_override_fonts/normal_font = ExtResource("1_vom31")
+bbcode_enabled = true
+text = "[wave amp=50]Restart pressing \"R\""
+script = ExtResource("2_30uts")
+
+[node name="shadow" type="RichTextLabel" parent="."]
+show_behind_parent = true
+z_index = 5
+material = SubResource("ShaderMaterial_sxlna")
+clip_contents = false
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 173.0
+offset_bottom = 24.0
+pivot_offset = Vector2(73, 12)
+theme_override_fonts/normal_font = ExtResource("1_vom31")
+bbcode_enabled = true
+text = "[wave amp=50]Restart pressing \"R\""
+script = ExtResource("2_30uts")

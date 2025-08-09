@@ -8,6 +8,7 @@ size = Vector2(2, 2)
 
 [node name="blood" type="Area2D"]
 collision_layer = 4
+collision_mask = 17
 script = ExtResource("1_kl077")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

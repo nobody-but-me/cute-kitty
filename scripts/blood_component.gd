@@ -66,6 +66,10 @@ func explode() -> void:
 		var brain = add_organ(preload("res://sprites/organs/brain.png"))
 		get_tree().current_scene.get_node("main_camera").free_mode = true
 		get_tree().current_scene.get_node("main_camera").player = brain
+		
+		var restart = preload("res://scenes/ui/restart_text.tscn").instantiate()
+		restart.target = brain;
+		get_tree().current_scene.add_child(restart)
 	return
 
 func _ready() -> void:

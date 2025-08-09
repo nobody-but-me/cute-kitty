@@ -28,6 +28,7 @@ offset_bottom = 679.0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("4_j5jx5")
 stretch_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="kitty" parent="." instance=ExtResource("1_errlg")]
 position = Vector2(123, 37)
@@ -39,7 +40,7 @@ tile_set = ExtResource("2_74lek")
 
 [node name="objects" type="TileMapLayer" parent="."]
 position = Vector2(0, 3)
-tile_map_data = PackedByteArray("AAACAAMAAAAIAAMAAAADAAMAAAAIAAQAAAABAAMAAAAIAAQAAAAPAAQAAAAIAAQAAAAKAAcAAAAIAAMAAAAGAAcAAAAJAAQAAAA=")
+tile_map_data = PackedByteArray("AAAGAAcAAAAJAAQAAAA=")
 tile_set = ExtResource("2_74lek")
 
 [node name="main_tile" type="TileMapLayer" parent="."]

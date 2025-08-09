@@ -14,6 +14,8 @@ func _ready() -> void:
 	
 	if ($sprite.texture == preload("res://sprites/organs/bone.png") || $sprite.texture == preload("res://sprites/organs/skull.png") || $sprite.texture == preload("res://sprites/organs/ribs.png")):
 		bone = true
+	if ($sprite.texture == preload("res://sprites/organs/heart.png")):
+		$blood_timer.start()
 	return
 
 func add_blood() -> void:
@@ -43,4 +45,10 @@ func _on_queue_free_timer_timeout() -> void:
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	if (bone == false): $squish.play("squish"); add_blood()
+	return
+
+func _on_blood_timer_timeout() -> void:
+	$blood_timer.wait_time += 0.2
+	$squish.play("squish")
+	add_blood()
 	return

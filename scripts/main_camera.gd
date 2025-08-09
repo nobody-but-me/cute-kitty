@@ -1,10 +1,9 @@
 @tool
 extends Camera2D
 
-const WINDOW_WIDTH: int = 224;
 
 @warning_ignore("integer_division")
-@export var screen_size = Vector2(WINDOW_WIDTH, WINDOW_WIDTH/16*9)
+@export var screen_size = Vector2(global.WINDOW_WIDTH, global.WINDOW_WIDTH/16*9)
 @export var acceleration: float = 0.5
 @export var player: CharacterBody2D
 @export var free_mode: bool = false
