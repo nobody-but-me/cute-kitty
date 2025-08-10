@@ -25,7 +25,7 @@ func add_organ(texture):
 func explode() -> void:
 	randomize()
 	random.randomize()
-	colour = Color(randf_range(0.0, 150.0), 0.0, 0.0, randf_range(10.0, 255.0))
+	colour = Color(randf_range(100.0, 200.0), 0.0, 0.0, randf_range(10.0, 255.0))
 	
 	for i in range(0, max_blood_amount, 1):
 		var tb = tile_blood.instantiate()
@@ -68,7 +68,6 @@ func explode() -> void:
 		get_tree().current_scene.get_node("main_camera").player = brain
 		
 		var restart = preload("res://scenes/ui/restart_text.tscn").instantiate()
-		restart.target = brain;
 		get_tree().current_scene.add_child(restart)
 	return
 

@@ -60,30 +60,51 @@ shader_parameter/outline_thickness = 1.0
 shader_parameter/chromatic_aberration = false
 shader_parameter/aberration_strength = 1.0
 
-[node name="restart_text" type="RichTextLabel"]
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="restart_text" type="RichTextLabel" parent="."]
 z_index = 5
 material = SubResource("ShaderMaterial_wkmxi")
 clip_contents = false
-offset_right = 174.0
-offset_bottom = 25.0
-pivot_offset = Vector2(73, 12)
-theme_override_constants/outline_size = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = -54.5
+offset_right = 117.0
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(117, 54.5)
+theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("1_vom31")
 bbcode_enabled = true
-text = "[wave amp=50]Restart pressing \"R\""
+text = "[center]And you died... Once again
+[wave amp=50]Restart pressing \"R\""
 script = ExtResource("2_30uts")
 
-[node name="shadow" type="RichTextLabel" parent="."]
+[node name="shadow" type="RichTextLabel" parent="restart_text"]
 show_behind_parent = true
 z_index = 5
 material = SubResource("ShaderMaterial_sxlna")
 clip_contents = false
-offset_left = -1.0
-offset_top = -1.0
-offset_right = 173.0
-offset_bottom = 24.0
-pivot_offset = Vector2(73, 12)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = -54.5
+offset_right = 117.0
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(117, 54.5)
+theme_override_constants/outline_size = 0
 theme_override_fonts/normal_font = ExtResource("1_vom31")
 bbcode_enabled = true
 text = "[wave amp=50]Restart pressing \"R\""
-script = ExtResource("2_30uts")

@@ -12,8 +12,6 @@ var jump_force: float = 250.
 var speed: float = 100.
 var state: String = 'idle'
 
-func ready() -> void:
-	return
 
 func kill() -> void:
 	var blood_component = preload("res://scenes/components/blood_component.tscn").instantiate()
