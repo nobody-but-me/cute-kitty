@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://d252vvgek0bq5"]
+
+[ext_resource type="Script" uid="uid://b0esb7daqg5md" path="res://scripts/objects/cat_pillow.gd" id="1_5o17x"]
+[ext_resource type="Texture2D" uid="uid://0esd1tv6ylq1" path="res://sprites/objects/cat_bed.png" id="1_k51gw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jcd4p"]
+radius = 15.0333
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5o17x"]
+radius = 7.0
+height = 22.0
+
+[node name="cat_pillow" type="Area2D"]
+script = ExtResource("1_5o17x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -12)
+texture = ExtResource("1_k51gw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_jcd4p")
+
+[node name="player_position" type="Marker2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="static_body" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="static_body"]
+position = Vector2(0, -7)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5o17x")
+
+[node name="Timer" type="Timer" parent="." groups=["cat_pillow"]]

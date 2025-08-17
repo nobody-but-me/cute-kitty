@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvf06pwg0x41a"]
+
+[ext_resource type="Script" uid="uid://b2snoee75sxaa" path="res://scripts/fx/blood_viewport.gd" id="1_o0a2x"]
+
+[node name="blood_viewport" type="SubViewportContainer"]
+z_index = 5
+offset_right = 610.0
+offset_bottom = 256.0
+script = ExtResource("1_o0a2x")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="viewport" type="SubViewport" parent="."]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(610, 256)
+render_target_clear_mode = 2
+render_target_update_mode = 4

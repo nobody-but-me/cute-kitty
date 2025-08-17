@@ -15,7 +15,7 @@ var colour: Color;
 
 func add_organ(texture):
 	var organ = preload("res://scenes/organs.tscn").instantiate()
-	organ.global_position = get_node("/root/main/kitty").get_global_position()
+	organ.global_position = get_node("/root/main/player_group/kitty").get_global_position()
 	organ.global_position.y -= 10
 	organ.tex = texture
 	
@@ -25,7 +25,7 @@ func add_organ(texture):
 func explode() -> void:
 	randomize()
 	random.randomize()
-	colour = Color(randf_range(100.0, 200.0), 0.0, 0.0, randf_range(10.0, 255.0))
+	colour = Color(255.0, 0.0, 0.0, 255.0)
 	
 	for i in range(0, max_blood_amount, 1):
 		var tb = tile_blood.instantiate()
@@ -44,7 +44,7 @@ func explode() -> void:
 		b.horizontal_speed = random.randf_range(-1, 1)
 		b.vertical_speed = random.randf_range(-2, -0.5)
 		
-		var init_position: Vector2 = get_node("/root/main/kitty").get_global_position()
+		var init_position: Vector2 = get_node("/root/main/player_group/kitty").get_global_position()
 		init_position.y -= 10
 		 
 		tb.global_position = init_position

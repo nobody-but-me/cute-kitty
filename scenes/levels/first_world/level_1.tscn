@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=4 uid="uid://dvcn72onjjqhn"]
+
+[ext_resource type="PackedScene" uid="uid://c5imsmlpphlmy" path="res://scenes/player/kitty.tscn" id="1_h3ldi"]
+[ext_resource type="PackedScene" uid="uid://bvf06pwg0x41a" path="res://scenes/components/blood_viewport_component.tscn" id="1_km2v0"]
+[ext_resource type="PackedScene" uid="uid://bk470hhrwq37l" path="res://scenes/ui/background.tscn" id="1_mbccd"]
+[ext_resource type="PackedScene" uid="uid://d252vvgek0bq5" path="res://scenes/objects/cat_pillow.tscn" id="2_ibltb"]
+[ext_resource type="PackedScene" uid="uid://n6610qnmdgc2" path="res://scenes/levels/first_world/level_2.tscn" id="3_fp7va"]
+[ext_resource type="PackedScene" uid="uid://wd0gv3p8mvu0" path="res://scenes/main_tile.tscn" id="3_iqvlf"]
+[ext_resource type="PackedScene" uid="uid://bgipd66hp1l03" path="res://scenes/player/main_camera.tscn" id="5_xt2ly"]
+
+[node name="level1" type="Node2D"]
+
+[node name="background" parent="." instance=ExtResource("1_mbccd")]
+metadata/_edit_lock_ = true
+
+[node name="player_group" type="Node" parent="."]
+
+[node name="cat_pillow" parent="player_group" groups=["cat_pillow"] instance=ExtResource("2_ibltb")]
+position = Vector2(168, 75)
+scene = ExtResource("3_fp7va")
+
+[node name="kitty" parent="player_group" instance=ExtResource("1_h3ldi")]
+
+[node name="main_tile" parent="." instance=ExtResource("3_iqvlf")]
+tile_map_data = PackedByteArray("AAD//wAAAAAFAAQAAAD//wEAAAADAAMAAAD//wIAAAADAAMAAAD//wMAAAAGAAQAAAD//wQAAAAAAAMAAAAAAP//AAABAAAAAAAHAP//AAAAAAAAAAAAAAQAAAAGAAMAAAAIAAQAAAABAAMAAAAHAAQAAAABAAMAAAAGAAQAAAABAAMAAAAFAAQAAAAGAAIAAAAJAAQAAAACAAMAAAAJAAMAAAACAAMAAAAJAAIAAAACAAMAAAAJAAEAAAACAAMAAAAJAAAAAAACAAMAAAAIAAAAAAAGAAAAAAAIAAMAAAAGAAIAAAAAAAAAAAACAAQAAAABAP//AAACAAEAAAAJAAUAAAACAAQAAAAIAP//AAABAAIAAAAJAP//AAACAAIAAAABAAQAAAABAAIAAAD//wUAAAAAAAQAAAAAAAUAAAABAAQAAAACAAUAAAABAAQAAAABAAUAAAABAAQAAAAEAAUAAAABAAQAAAADAAUAAAABAAQAAAAFAAUAAAABAAQAAAAGAAUAAAABAAQAAAAHAAUAAAABAAQAAAAIAAUAAAABAAQAAAAHAAMAAAABAAIAAAAGAAMAAAABAAIAAAAFAAMAAAAAAAIAAAAIAAIAAAAAAAMAAAACAAAAAAADAAEAAAAGAP//AAABAAEAAAAIAAEAAAAAAAMAAAAHAAAAAAAAAAQAAAAAAAMAAAACAAIAAAD/////AAAAAAIAAAAFAP//AAAEAAAAAAAFAAAAAAAFAAEAAAAEAAAAAAAAAAEAAAAEAAQAAAABAAIAAAADAAQAAAABAAIAAAACAAQAAAABAAIAAAA=")
+
+[node name="main_camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_xt2ly")]
+player = NodePath("../player_group/kitty")
+
+[node name="blood_viewport" parent="." instance=ExtResource("1_km2v0")]
+
+[node name="player_init_position" type="Marker2D" parent="."]
+position = Vector2(49, 40)

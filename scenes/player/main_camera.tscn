@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgipd66hp1l03"]
+
+[ext_resource type="Script" uid="uid://c4vmoq8lum76p" path="res://scripts/main_camera.gd" id="1_r5jk0"]
+
+[node name="main_camera" type="Camera2D" node_paths=PackedStringArray("player")]
+anchor_mode = 0
+script = ExtResource("1_r5jk0")
+screen_size = Vector2(198, 108)
+acceleration = 0.1
+player = NodePath("")
+metadata/_edit_lock_ = true

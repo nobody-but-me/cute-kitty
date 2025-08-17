@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://c5imsmlpphlmy"]
 
 [ext_resource type="Texture2D" uid="uid://cy04bmgiib7m" path="res://sprites/kitty/bigodin/bigodin-idle.png" id="1_q4drk"]
-[ext_resource type="Script" uid="uid://5w27nyann0ld" path="res://scripts/kitty.gd" id="1_tqbcw"]
+[ext_resource type="Script" uid="uid://5w27nyann0ld" path="res://scripts/characters/player/kitty.gd" id="1_tqbcw"]
 [ext_resource type="Texture2D" uid="uid://cxjeu865igdhs" path="res://sprites/kitty/bigodin/bigodin-walk.png" id="2_26jn4"]
 [ext_resource type="Texture2D" uid="uid://d351yoctwxu5c" path="res://sprites/kitty/bigodin/bigodin-jump.png" id="4_q6pbq"]
 [ext_resource type="Texture2D" uid="uid://u1cbl7gqdla1" path="res://sprites/kitty/bigodin/bigodin-walk1.png" id="5_lwgw5"]
@@ -143,4 +143,5 @@ debug_color = Color(0.990894, 0, 0.272595, 0.42)
 
 [connection signal="timeout" from="coyote_timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="resting_timer" to="." method="_on_resting_timer_timeout"]
+[connection signal="area_entered" from="danger_area" to="." method="_on_danger_area_area_entered"]
 [connection signal="body_entered" from="danger_area" to="." method="_on_danger_area_body_entered"]

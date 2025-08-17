@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://bya23yk2icv7y"]
+
+[ext_resource type="Script" uid="uid://dqdvvxtofefiu" path="res://scripts/components/scene_changer_component.gd" id="1_5wea7"]
+[ext_resource type="Shader" uid="uid://bcxucpapwgsxq" path="res://shaders/global_transitior.gdshader" id="1_jtofl"]
+[ext_resource type="Texture2D" uid="uid://byu33pntv3ta3" path="res://sprites/fx/black_sprite.png" id="2_jtofl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7n5f4"]
+shader = ExtResource("1_jtofl")
+shader_parameter/time = 0.0
+shader_parameter/custom_resolution = Vector2(224, 126)
+
+[sub_resource type="Animation" id="Animation_jtofl"]
+resource_name = "scene_changer"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.57, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5wea7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7n5f4"]
+_data = {
+&"RESET": SubResource("Animation_5wea7"),
+&"scene_changer": SubResource("Animation_jtofl")
+}
+
+[node name="scene_changer" type="CanvasLayer"]
+script = ExtResource("1_5wea7")
+
+[node name="background" type="TextureRect" parent="."]
+process_mode = 3
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_7n5f4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_jtofl")
+metadata/_edit_lock_ = true
+
+[node name="animation_player" type="AnimationPlayer" parent="background"]
+libraries = {
+&"": SubResource("AnimationLibrary_7n5f4")
+}

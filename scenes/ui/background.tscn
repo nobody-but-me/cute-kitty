@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk470hhrwq37l"]
+
+[ext_resource type="Shader" uid="uid://b84qhd2ewmlve" path="res://shaders/scrolling_texture.gdshader" id="1_qy2i1"]
+[ext_resource type="Texture2D" uid="uid://bc7e5o1mumwjb" path="res://sprites/backgrounds/background.png" id="2_dcdg6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_at5dv"]
+shader = ExtResource("1_qy2i1")
+shader_parameter/scroll_speed = 0.08
+shader_parameter/angle_degress = 42.0
+shader_parameter/repeat_x = 3.0
+shader_parameter/repeat_y = 3.0
+shader_parameter/row_offset = 0.0
+shader_parameter/texture_to_scroll = ExtResource("2_dcdg6")
+
+[node name="background" type="TextureRect"]
+z_index = -5
+material = SubResource("ShaderMaterial_at5dv")
+offset_left = -212.0
+offset_top = -167.0
+offset_right = 1140.0
+offset_bottom = 785.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_dcdg6")
+stretch_mode = 1

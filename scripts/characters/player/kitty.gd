@@ -8,10 +8,12 @@ var last_floor: bool = false
 var coyote: bool = false
 var jumping: bool = false
 
-var jump_force: float = 250.
+var jump_force: float = 280.
 var speed: float = 100.
 var state: String = 'idle'
 
+func _ready() -> void:
+	self.global_position = get_tree().current_scene.get_node("player_init_position").global_position
 
 func kill() -> void:
 	var blood_component = preload("res://scenes/components/blood_component.tscn").instantiate()
@@ -20,6 +22,7 @@ func kill() -> void:
 	blood_component.organs = true
 	
 	get_tree().current_scene.add_child(blood_component)
+	global.GAME_STATE = "DEAD"
 	self.queue_free()
 	return
 
@@ -54,7 +57,7 @@ func _physics_process(_delta: float) -> void:
 	self.move_and_slide()
 	self.velocity.y += GRAVITY * _delta
 	if (self.is_on_floor() || $jump_buffer.is_colliding() || coyote):
-		if (Input.is_action_pressed("jump")): self.velocity.y = -jump_force; jumping = true
+		if (Input.is_action_just_pressed("jump")): self.velocity.y = -jump_force; jumping = true
 	
 	if (!self.is_on_floor()): 
 		if (Input.is_action_just_released("jump") || self.is_on_ceiling()): velocity.y *= 0.5;
@@ -86,4 +89,18 @@ func _on_resting_timer_timeout() -> void:
 
 func _on_danger_area_body_entered(_body: Node2D) -> void:
 	if (_body.is_in_group("dangerous")): kill()
+	return
+
+func _on_danger_area_area_entered(_area: Area2D) -> void:
+	if (_area.is_in_group("cat_pillow")): 
+		var sprite: Sprite2D = Sprite2D.new(); 
+		sprite.texture = preload("res://sprites/kitty/bigodin/kitty-resting.png");
+		sprite.z_index = 5
+		sprite.global_position = Vector2(_area.get_node("player_position").global_position.x, _area.get_node("player_position").global_position.y - 11);
+		#sprite.flip_h = _area.player_side
+		sprite.flip_h = $sprite.flip_h
+		get_tree().current_scene.get_node("player_group").add_child(sprite)
+		global.GAME_STATE = "WIN"
+		_area.change_scene()
+		self.queue_free()
 	return

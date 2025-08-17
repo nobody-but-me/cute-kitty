@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://csup8negie28j" path="res://shaders/animated_pixel_art.gdshader" id="1_sxlna"]
 [ext_resource type="FontFile" uid="uid://bq5hkw2xbx7rs" path="res://resources/fonts/Comic Sans MS.ttf" id="1_vom31"]
-[ext_resource type="Script" uid="uid://cktc6lqnb3hbx" path="res://scripts/restart_text.gd" id="2_30uts"]
+[ext_resource type="Script" uid="uid://cktc6lqnb3hbx" path="res://scripts/components/restart_text.gd" id="2_30uts"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wkmxi"]
 shader = ExtResource("1_sxlna")
@@ -71,14 +71,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -117.0
-offset_top = -54.5
-offset_right = 117.0
-offset_bottom = 54.5
+offset_left = -112.0
+offset_top = -63.0
+offset_right = 122.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(117, 54.5)
 theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("1_vom31")
 bbcode_enabled = true
@@ -103,7 +102,6 @@ offset_right = 117.0
 offset_bottom = 54.5
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(117, 54.5)
 theme_override_constants/outline_size = 0
 theme_override_fonts/normal_font = ExtResource("1_vom31")
 bbcode_enabled = true

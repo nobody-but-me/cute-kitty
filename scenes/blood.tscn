@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://cdm20y5cgisfu"]
 
-[ext_resource type="Script" uid="uid://dehux3pxusymf" path="res://scripts/blood.gd" id="1_kl077"]
+[ext_resource type="Script" uid="uid://dehux3pxusymf" path="res://scripts/fx/blood.gd" id="1_kl077"]
 [ext_resource type="Texture2D" uid="uid://ds2k7rlos72hy" path="res://sprites/fx/blood.png" id="2_uli77"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iyx0m"]
-size = Vector2(2, 2)
+size = Vector2(1, 1)
 
 [node name="blood" type="Area2D"]
 collision_layer = 4

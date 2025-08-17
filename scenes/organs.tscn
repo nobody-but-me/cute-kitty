@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dhpe4t0wvsfxj"]
 
-[ext_resource type="Script" uid="uid://dcal470p1ftxf" path="res://scripts/organs.gd" id="1_df3lu"]
+[ext_resource type="Script" uid="uid://dcal470p1ftxf" path="res://scripts/fx/organs.gd" id="1_df3lu"]
 [ext_resource type="Texture2D" uid="uid://dvx6hxw4fijc4" path="res://sprites/organs/bone.png" id="2_y3n33"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y3klu"]
@@ -122,6 +122,7 @@ func explode() -> void:
 "
 
 [node name="organs" type="CharacterBody2D"]
+z_index = 6
 collision_layer = 0
 script = ExtResource("1_df3lu")
 
@@ -149,6 +150,7 @@ libraries = {
 [node name="start_die_timer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
+autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
