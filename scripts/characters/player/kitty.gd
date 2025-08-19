@@ -22,7 +22,6 @@ func kill() -> void:
 	blood_component.organs = true
 	
 	get_tree().current_scene.add_child(blood_component)
-	global.GAME_STATE = "DEAD"
 	self.queue_free()
 	return
 

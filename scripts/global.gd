@@ -10,6 +10,7 @@ func _process(_delta: float) -> void:
 		get_tree().current_scene.get_node("main_camera").free_mode = false;
 		get_tree().current_scene.get_node("main_camera").player = player;
 		get_tree().current_scene.get_node("CanvasLayer").queue_free()
+		GAME_STATE = "GAME"
 	elif (Input.is_action_just_pressed("restart") && GAME_STATE == "WIN"): get_tree().reload_current_scene()
 	if (Input.is_action_just_pressed("ui_cancel")): get_tree().quit()
 	return

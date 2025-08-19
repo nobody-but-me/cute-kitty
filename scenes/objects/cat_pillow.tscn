@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://0esd1tv6ylq1" path="res://sprites/objects/cat_bed.png" id="1_k51gw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jcd4p"]
-radius = 15.0333
+radius = 13.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5o17x"]
 radius = 7.0

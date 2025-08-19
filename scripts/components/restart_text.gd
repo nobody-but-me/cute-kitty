@@ -1,4 +1,4 @@
-extends RichTextLabel
+extends Label
 
 const ACCELERATION = 0.03
 const texts: Array = [
@@ -25,25 +25,19 @@ const texts: Array = [
 	"Even Miranda would be able to beat this game.",
 	"Are you paralyzed? Because it seems like you are",
 ]
-var selected_text: int = 0;
-
 var random = RandomNumberGenerator.new()
+var selected_text: int = 0;
 
 func _ready() -> void:
 	randomize()
 	random.randomize()
 	@warning_ignore("narrowing_conversion")
 	selected_text = random.randf_range(0, texts.size());
-	self.global_position.x = randf_range(-global.WINDOW_WIDTH, 0.0 - self.size.x);
-	@warning_ignore("integer_division")
-	self.global_position.y = randf_range((global.WINDOW_WIDTH/16*9) * -1, 0.0 - self.size.y);
-	self.text = "[center]" + texts[selected_text] + "\n[wave amp=50]Restart with 'R'"
-	$shadow.text = self.text
+	
+	var txt: String = texts[selected_text] + "\nRestart with 'R'"
+	self.text = txt
 	return
 
-func _process(_delta: float) -> void:
-	@warning_ignore("integer_division")
-	self.global_position.x = lerp(self.global_position.x, (global.WINDOW_WIDTH/2) - self.size.x/2.5, ACCELERATION);
-	@warning_ignore("integer_division")
-	self.global_position.y = lerp(self.global_position.y, float(((global.WINDOW_WIDTH/16*9)/2) - self.size.y / 4), ACCELERATION);
+func _on_dead_timer_timeout() -> void:
+	global.GAME_STATE = "DEAD"
 	return
