@@ -61,6 +61,10 @@ func _physics_process(_delta: float) -> void:
 	if (!self.is_on_floor()): 
 		if (Input.is_action_just_released("jump") || self.is_on_ceiling()): velocity.y *= 0.5;
 		state = 'jumping'
+		
+		# TODO: refactoring needed.
+		if (Input.is_action_pressed("slow")): Engine.time_scale = 0.1
+		else: Engine.time_scale = 1
 	
 	if (!self.is_on_floor() && last_floor && !jumping):
 		coyote = true
