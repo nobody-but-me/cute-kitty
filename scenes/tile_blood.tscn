@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ds2k7rlos72hy" path="res://sprites/fx/blood.png" id="2_ysj1o"]
 
 [node name="tile_blood" type="Area2D"]
+modulate = Color(0.960784, 0, 0.180392, 1)
 script = ExtResource("1_3oaon")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

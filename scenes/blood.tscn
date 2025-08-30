@@ -7,6 +7,7 @@
 size = Vector2(1, 1)
 
 [node name="blood" type="Area2D"]
+modulate = Color(0.96133, 0, 0.181541, 1)
 collision_layer = 4
 collision_mask = 17
 script = ExtResource("1_kl077")

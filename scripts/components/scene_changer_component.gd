@@ -17,4 +17,5 @@ func change_scene(scene: PackedScene) -> void:
 	$background/animation_player.play("scene_changer")
 	await $background/animation_player.animation_finished
 	get_tree().paused = false
+	#global.GAME_STATE = "GAME"
 	return

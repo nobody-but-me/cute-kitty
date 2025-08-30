@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ww0iiaui2utx"]
+[gd_scene load_steps=5 format=3 uid="uid://ww0iiaui2utx"]
 
 [ext_resource type="Shader" uid="uid://csup8negie28j" path="res://shaders/animated_pixel_art.gdshader" id="1_sxlna"]
 [ext_resource type="Script" uid="uid://cktc6lqnb3hbx" path="res://scripts/components/restart_text.gd" id="2_30uts"]
+[ext_resource type="FontFile" uid="uid://bq5hkw2xbx7rs" path="res://resources/fonts/Comic Sans MS.ttf" id="2_sxlna"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wkmxi"]
 shader = ExtResource("1_sxlna")
@@ -41,6 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_sxlna")
 text = "Retardation's a problem in mental development that result in a lack of intelligence... Restart with 'R'"
 horizontal_alignment = 3
 vertical_alignment = 3

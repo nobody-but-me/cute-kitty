@@ -89,19 +89,14 @@ var blood_path: String = '/root/main/'
 
 var random = RandomNumberGenerator.new()
 var count: int = 0;
-var colour: Color;
 
 func explode() -> void:
 	randomize()
 	random.randomize()
-	colour = Color(randf_range(0.0, 150.0), 0.0, 0.0, randf_range(10.0, 255.0))
 	
 	for i in range(0, max_blood_amount, 1):
 		var tb = tile_blood.instantiate()
 		var b = blood.instantiate()
-		
-		tb.get_node(\"Sprite2D\").modulate = colour
-		b.get_node(\"Sprite2D\").modulate = colour
 		
 		tb.blood = b;
 		

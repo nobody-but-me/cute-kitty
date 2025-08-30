@@ -11,7 +11,6 @@ var blood_path: String = '/root/main/'
 
 var random = RandomNumberGenerator.new()
 var count: int = 0;
-var colour: Color;
 
 func add_organ(texture):
 	var organ = preload("res://scenes/organs.tscn").instantiate()
@@ -25,14 +24,10 @@ func add_organ(texture):
 func explode() -> void:
 	randomize()
 	random.randomize()
-	colour = Color(255.0, 0.0, 0.0, 255.0)
 	
 	for i in range(0, max_blood_amount, 1):
 		var tb = tile_blood.instantiate()
 		var b = blood.instantiate()
-		
-		tb.get_node("Sprite2D").modulate = colour
-		b.get_node("Sprite2D").modulate = colour
 		
 		tb.blood = b;
 		

@@ -5,7 +5,7 @@ extends Area2D
 var random: float = 0.0;
 
 func _ready() -> void:
-	random = randf_range(0.1, 1.5)
+	random = randf_range(0.1, 1.0)
 	$death_timer.wait_time = random
 	
 	$death_timer.start()

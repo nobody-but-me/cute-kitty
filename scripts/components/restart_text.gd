@@ -6,7 +6,7 @@ const texts: Array = [
 	"Maybe it would be easier if you at least tried.",
 	"Let's try not to jump right in the spines next time...",
 	"Organs, organs and more organs...",
-	"Poor little kitty!",
+	"Poor little kitty! See what you did to it! What a monster!",
 	"Blood explosion!",
 	"It's hard for you to press the jump button, so, please, try to press 'R' now" ,
 	"...",
@@ -18,12 +18,13 @@ const texts: Array = [
 	"O.k., let's play seriously from now",
 	"Are you fucking stupid?",
 	"Maybe games are not for you, buddy",
-	"Your mommy was right: go get a job!",
-	"Next time, get your hands off your dirty bootyhole and use them to play the game.",
+	"Your mommy was right: you are a failure.",
+	"Next time, get your fingers out of your dirty bootyhole and use them to play the game.",
 	"Oh boy, that's why abortion exists",
 	"The fact you were dropped as a baby doesn't give you the right to drop the kitty.",
 	"Even Miranda would be able to beat this game.",
 	"Are you paralyzed? Because it seems like you are",
+	"Don't you get tired of dying?",
 ]
 var random = RandomNumberGenerator.new()
 var selected_text: int = 0;

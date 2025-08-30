@@ -1,14 +1,16 @@
 extends CharacterBody2D
 
 const ACCELERATION: float = .2
-const FRICTION: float = .04
 const GRAVITY: float = 1000.
+const FRICTION: float = .04
+
+const JUMP_HEIGHT: int = 40
 
 var last_floor: bool = false
 var coyote: bool = false
 var jumping: bool = false
 
-var jump_force: float = 280.
+var jump_force: float = sqrt(2 * GRAVITY * JUMP_HEIGHT)
 var speed: float = 100.
 var state: String = 'idle'
 
@@ -18,7 +20,7 @@ func _ready() -> void:
 func kill() -> void:
 	var blood_component = preload("res://scenes/components/blood_component.tscn").instantiate()
 	blood_component.global_position = self.global_position
-	blood_component.max_blood_amount = 150
+	blood_component.max_blood_amount = 50
 	blood_component.organs = true
 	
 	get_tree().current_scene.add_child(blood_component)
@@ -38,8 +40,8 @@ func update_animation() -> void:
 func move() -> void:
 	var direction = Input.get_axis("a", "d")
 	
-	if (direction > .5): $sprite.flip_h = false
-	elif (direction < -.5): $sprite.flip_h = true
+	if (direction > .5): $sprite.flip_h = false; $jump_buffer_sprite.flip_h = false
+	elif (direction < -.5): $sprite.flip_h = true; $jump_buffer_sprite.flip_h = true
 	
 	if (direction != 0): 
 		self.velocity.x = lerp(self.velocity.x, direction * speed, ACCELERATION); 
@@ -59,16 +61,17 @@ func _physics_process(_delta: float) -> void:
 		if (Input.is_action_just_pressed("jump")): self.velocity.y = -jump_force; jumping = true
 	
 	if (!self.is_on_floor()): 
-		if (Input.is_action_just_released("jump") || self.is_on_ceiling()): velocity.y *= 0.5;
+		if (Input.is_action_just_released("jump") || self.is_on_ceiling()): 
+			velocity.y *= 0.5;
+		if (last_floor && !jumping):
+			coyote = true
+			$coyote_timer.start()
+			
 		state = 'jumping'
 		
-		# TODO: refactoring needed.
-		if (Input.is_action_pressed("slow")): Engine.time_scale = 0.1
-		else: Engine.time_scale = 1
+	if ((!self.is_on_floor() && $jump_buffer.is_colliding()) || coyote): $jump_buffer_sprite.visible = true
+	else: $jump_buffer_sprite.visible = false
 	
-	if (!self.is_on_floor() && last_floor && !jumping):
-		coyote = true
-		$coyote_timer.start()
 	update_animation();
 	return
 
@@ -103,7 +106,7 @@ func _on_danger_area_area_entered(_area: Area2D) -> void:
 		#sprite.flip_h = _area.player_side
 		sprite.flip_h = $sprite.flip_h
 		get_tree().current_scene.get_node("player_group").add_child(sprite)
-		global.GAME_STATE = "WIN"
+		#global.GAME_STATE = "WIN"
 		_area.change_scene()
 		self.queue_free()
 	return
