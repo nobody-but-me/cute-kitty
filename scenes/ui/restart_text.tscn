@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ww0iiaui2utx"]
+[gd_scene load_steps=6 format=3 uid="uid://ww0iiaui2utx"]
 
 [ext_resource type="Shader" uid="uid://csup8negie28j" path="res://shaders/animated_pixel_art.gdshader" id="1_sxlna"]
 [ext_resource type="Script" uid="uid://cktc6lqnb3hbx" path="res://scripts/components/restart_text.gd" id="2_30uts"]
@@ -32,6 +32,34 @@ shader_parameter/outline_thickness = 1.0
 shader_parameter/chromatic_aberration = false
 shader_parameter/aberration_strength = 1.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sxlna"]
+shader = ExtResource("1_sxlna")
+shader_parameter/jitter_strength = 2.0
+shader_parameter/jitter_speed = 0.1
+shader_parameter/jitter_frequency = 12.0
+shader_parameter/separate_xy = true
+shader_parameter/time_offset = 0.0
+shader_parameter/enable_rotation = true
+shader_parameter/rotation_strength = 0.179
+shader_parameter/rotation_speed = 0.218
+shader_parameter/rotation_frequency = 0.1
+shader_parameter/enable_scaling = true
+shader_parameter/scale_strength = 0.035
+shader_parameter/scale_speed = 2.5
+shader_parameter/scale_frequency = 6.0
+shader_parameter/base_scale = 1.0
+shader_parameter/text_color = Color(0, 0, 0, 1)
+shader_parameter/use_custom_color = true
+shader_parameter/shake_intensity = 1.0
+shader_parameter/enable_pixelation = true
+shader_parameter/pixel_size = 1.0
+shader_parameter/adaptive_pixels = true
+shader_parameter/enable_outline = true
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_thickness = 1.0
+shader_parameter/chromatic_aberration = false
+shader_parameter/aberration_strength = 1.0
+
 [node name="CanvasLayer" type="CanvasLayer"]
 
 [node name="restart_text" type="Label" parent="."]
@@ -40,6 +68,9 @@ material = SubResource("ShaderMaterial_wkmxi")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 5.0
+offset_right = -8.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_sxlna")
@@ -48,6 +79,27 @@ horizontal_alignment = 3
 vertical_alignment = 3
 autowrap_mode = 3
 script = ExtResource("2_30uts")
+
+[node name="restart_text2" type="Label" parent="restart_text"]
+show_behind_parent = true
+z_index = -1
+material = SubResource("ShaderMaterial_sxlna")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_sxlna")
+text = "Retardation's a problem in mental development that result in a lack of intelligence... Restart with 'R'"
+horizontal_alignment = 3
+vertical_alignment = 3
+autowrap_mode = 3
 
 [node name="dead_timer" type="Timer" parent="restart_text"]
 wait_time = 2.0

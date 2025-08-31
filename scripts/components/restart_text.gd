@@ -48,6 +48,7 @@ func _ready() -> void:
 	
 	var txt: String = texts[selected_text] + "\nRestart with 'R'"
 	self.text = txt
+	$restart_text2.text = txt
 	return
 
 func _on_dead_timer_timeout() -> void:
